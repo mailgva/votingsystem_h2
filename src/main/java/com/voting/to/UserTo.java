@@ -1,5 +1,8 @@
 package com.voting.to;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.validation.constraints.Email;
@@ -7,6 +10,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class UserTo extends BaseTo implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -24,9 +30,6 @@ public class UserTo extends BaseTo implements Serializable {
     @Size(min = 5, max = 32)
     private String password;
 
-    public UserTo() {
-    }
-
     public UserTo(Integer id, String name, String email, String password) {
         super(id);
         this.name = name;
@@ -34,7 +37,7 @@ public class UserTo extends BaseTo implements Serializable {
         this.password = password;
     }
 
-    public String getPassword() {
+    /*public String getPassword() {
         return password;
     }
 
@@ -65,5 +68,5 @@ public class UserTo extends BaseTo implements Serializable {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';
-    }
+    }*/
 }

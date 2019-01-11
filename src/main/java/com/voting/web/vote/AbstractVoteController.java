@@ -46,15 +46,6 @@ public class AbstractVoteController {
         service.delete(id, userId);
     }
 
-
-    /*
-    public List<Vote> getAll() {
-        int userId = SecurityUtil.authUserId();
-        log.info("getAll for user {}", userId);
-        return MealsUtil.getWithExcess(service.getAll(userId), SecurityUtil.authUserCaloriesPerDay());
-    }*/
-
-
     public Vote create(Vote vote) {
         int userId = SecurityUtil.authUserId();
         vote.setUser(userService.get(userId));
@@ -71,25 +62,4 @@ public class AbstractVoteController {
     }
 
 
-
-
-    /**
-     * <ol>Filter separately
-     * <li>by date</li>
-     * <li>by time for every date</li>
-     * </ol>
-     */
-    /*
-    public List<MealTo> getBetween(LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime) {
-        int userId = SecurityUtil.authUserId();
-        log.info("getBetween dates({} - {}) time({} - {}) for user {}", startDate, endDate, startTime, endTime, userId);
-
-        List<Meal> mealsDateFiltered = service.getBetweenDates(
-                orElse(startDate, DateTimeUtil.MIN_DATE), orElse(endDate, DateTimeUtil.MAX_DATE), userId);
-
-        return MealsUtil.getFilteredWithExcess(mealsDateFiltered, SecurityUtil.authUserCaloriesPerDay(),
-                orElse(startTime, LocalTime.MIN), orElse(endTime, LocalTime.MAX)
-        );
-    }
-    */
 }

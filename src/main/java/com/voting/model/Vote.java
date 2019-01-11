@@ -1,6 +1,9 @@
 package com.voting.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,6 +34,9 @@ import java.util.List;
                 "JOIN FETCH v.resto JOIN FETCH v.user " +
                 "WHERE v.date=:date"),
 })
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "rest_id", "date"}, name = "voting_unique_user_rest_date_idx")})
 public class Vote extends AbstractBaseEntity {
@@ -55,8 +61,6 @@ public class Vote extends AbstractBaseEntity {
     private Resto resto;
 
     @Column(name = "date", nullable = false)
-    //@Temporal(TemporalType.DATE)
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern="yyyy-MM-dd")
     @NotNull
     private Date date;
@@ -75,57 +79,6 @@ public class Vote extends AbstractBaseEntity {
         this(v.getUser(), v.getResto(), v.getDate(), v.getDateTime());
     }
 
-    public Vote(){
-    }
-
-    public Vote(User user, Resto resto, Date date, LocalDateTime dateTime) {
-        this.user = user;
-        this.resto = resto;
-        this.date = date;
-        this.dateTime = dateTime;
-    }
-
-    public Vote(Integer id, User user, Resto resto, Date date, LocalDateTime dateTime) {
-        super(id);
-        this.user = user;
-        this.resto = resto;
-        this.date = date;
-        this.dateTime = dateTime;
-    }
-
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Resto getResto() {
-        return resto;
-    }
-
-    public void setResto(Resto resto) {
-        this.resto = resto;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
-
     @Override
     public String toString() {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -138,4 +91,20 @@ public class Vote extends AbstractBaseEntity {
                 ", \ndateTime=" + dtf.format(dateTime) +
                 '}';
     }
+
+       /*public Vote(User user, Resto resto, Date date, LocalDateTime dateTime) {
+        this.user = user;
+        this.resto = resto;
+        this.date = date;
+        this.dateTime = dateTime;
+    }
+
+    public Vote(Integer id, User user, Resto resto, Date date, LocalDateTime dateTime) {
+        super(id);
+        this.user = user;
+        this.resto = resto;
+        this.date = date;
+        this.dateTime = dateTime;
+    }*/
+
 }

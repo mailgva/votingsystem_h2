@@ -2,6 +2,9 @@ package com.voting.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.voting.HasId;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -10,6 +13,7 @@ import java.io.Serializable;
 @MappedSuperclass
 // http://stackoverflow.com/questions/594597/hibernate-annotations-which-is-better-field-or-property-access
 @Access(AccessType.FIELD)
+@Data
 public abstract class AbstractBaseEntity implements HasId {
     public static final int START_SEQ = 100000;
 
@@ -23,14 +27,6 @@ public abstract class AbstractBaseEntity implements HasId {
 
     protected AbstractBaseEntity(Integer id) {
         this.id = id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     @JsonIgnore

@@ -5,6 +5,8 @@ import com.voting.repository.VoteRepository;
 import com.voting.service.VoteService;
 import com.voting.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -33,6 +35,7 @@ public class VoteServiceImpl implements VoteService {
         return checkNotFoundWithId(repository.get(id, userId), id);
     }
 
+    @CacheEvict(value = "votes", allEntries = true)
     @Override
     public void delete(int id, int userId) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id, userId), id);
@@ -45,17 +48,20 @@ public class VoteServiceImpl implements VoteService {
         return repository.getBetween(startDateTime, endDateTime, userId);
     }
 
+    @Cacheable("votes")
     @Override
     public List<Vote> getAll(int userId) {
         return repository.getAll(userId);
     }
 
+    @CacheEvict(value = "votes", allEntries = true)
     @Override
     public void update(Vote vote, int userId) throws NotFoundException {
         checkTooLate(vote);
         repository.save(vote, userId);
     }
 
+    @CacheEvict(value = "votes", allEntries = true)
     @Override
     public Vote create(Vote vote, int userId) {
         Assert.notNull(vote, "vote must not be null");

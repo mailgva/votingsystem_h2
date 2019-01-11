@@ -48,11 +48,11 @@ public class VoteServiceTest extends AbstractServiceTest{
         LocalDate ld = LocalDate.now().plusDays(1);
 
         Date date = Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Vote vote = new Vote(null, user, resto, date, LocalDateTime.now());
+        Vote vote = new Vote(user, resto, date, LocalDateTime.now());
         service.create(vote, user.getId());
     }
 
-    @Test //(expected = TooLateEcxeption.class)
+    @Test
     public void update() {
         assertThrows(PastDateException.class, () -> {
 

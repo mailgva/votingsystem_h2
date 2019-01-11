@@ -30,11 +30,6 @@ public abstract class AbstractDailyMenuController {
         log.info("delete DailyMenu {} ", id);
         service.delete(id);
     }
-    /*
-    public List<DailyMenu> getAll() {
-        log.info("getAll ");
-        return MealsUtil.getWithExcess(service.getAll(userId), SecurityUtil.authUserCaloriesPerDay());
-    }*/
 
     public DailyMenu create(DailyMenu dailyMenu) {
         checkNew(dailyMenu);

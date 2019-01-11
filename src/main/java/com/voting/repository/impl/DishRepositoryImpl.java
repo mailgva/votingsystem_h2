@@ -39,7 +39,7 @@ public class DishRepositoryImpl implements DishRepository {
 
     @Override
     public List<Dish> getAll() {
-        return crudDishRepository.findAll();
+        return crudDishRepository.getAll();
     }
 
     public Dish getByNameAndPrice(String name, double price) {

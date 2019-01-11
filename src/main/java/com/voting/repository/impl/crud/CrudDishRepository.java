@@ -26,8 +26,7 @@ public interface CrudDishRepository extends JpaRepository<Dish, Integer> {
     // null if not found
     List<Dish> getByName(@Param("partName") String partName);
 
-
-    List<Dish> findAll();
+    List<Dish> getAll();
 
     Dish findByNameAndPrice(String name, double price);
 }

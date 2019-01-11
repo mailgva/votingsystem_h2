@@ -18,10 +18,6 @@ public interface CrudRestoRepository extends JpaRepository<Resto, Integer> {
     @Query("DELETE FROM Resto r WHERE r.id=:id")
     int delete(@Param("id") int id);
 
-    // null if not found
-    /*@Query("SELECT r FROM Resto r WHERE r.id=:id")
-    Resto get(@Param("id") int id);*/
-
     Resto findById(int id);
 
     // null if not found

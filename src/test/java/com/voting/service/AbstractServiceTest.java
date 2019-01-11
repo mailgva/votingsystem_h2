@@ -25,17 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(TimingExtension.class)
 abstract class AbstractServiceTest {
 
-    @Autowired
-    private Environment env;
-
     static {
         // needed only for java.util.logging (postgres driver)
         SLF4JBridgeHandler.install();
-    }
-
-    boolean isJpaBased() {
-//        return Arrays.stream(env.getActiveProfiles()).noneMatch(Profiles.JDBC::equals);
-        return env.acceptsProfiles(org.springframework.core.env.Profiles.of(Profiles.JPA, Profiles.DATAJPA));
     }
 
     //  Check root cause in JUnit: https://github.com/junit-team/junit4/pull/778

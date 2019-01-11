@@ -3,7 +3,9 @@ package com.voting;
 import com.voting.model.User;
 import com.voting.to.UserTo;
 import com.voting.util.UserUtil;
+import lombok.Data;
 
+@Data
 public class AuthorizedUser extends org.springframework.security.core.userdetails.User {
     private static final long serialVersionUID = 1L;
 
@@ -22,9 +24,6 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
         userTo = newTo;
     }
 
-    public UserTo getUserTo() {
-        return userTo;
-    }
 
     @Override
     public String toString() {

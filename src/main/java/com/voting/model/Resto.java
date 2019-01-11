@@ -1,15 +1,21 @@
 package com.voting.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @NamedQueries({
         @NamedQuery(name = Resto.GET_BY_NAME, query = "SELECT r FROM Resto r WHERE UPPER(r.name) = UPPER(:name)"),
         @NamedQuery(name = Resto.GET_ALL, query = "SELECT r FROM Resto r ORDER BY r.name")
 })
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "restaurants", uniqueConstraints = {@UniqueConstraint(columnNames = "id", name = "restaurants_unique_name_idx")})
 public class Resto extends AbstractNamedEntity {
@@ -20,10 +26,9 @@ public class Resto extends AbstractNamedEntity {
     private String address;
 
     @Transient
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private List<Dish> dishes;
-
-    public Resto() {
-    }
 
     public Resto(Resto r) {
         this(r.getId(), r.getName(), r.getAddress());
@@ -36,23 +41,6 @@ public class Resto extends AbstractNamedEntity {
     public Resto(Integer id, String name, String address) {
         super(id, name);
         this.address = address;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public List<Dish> getDishes() {
-        return dishes;
-    }
-
-    public void setDishes(List<Dish> dishes) {
-        this.dishes = dishes;
     }
 
     @Override

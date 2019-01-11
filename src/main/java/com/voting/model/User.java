@@ -3,6 +3,8 @@ package com.voting.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.voting.View;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -24,6 +26,8 @@ import java.util.*;
         @NamedQuery(name = User.BY_EMAIL, query = "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email=?1"),
         @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u ORDER BY u.name, u.email"),
 })
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
 public class User extends AbstractNamedEntity {
@@ -64,9 +68,6 @@ public class User extends AbstractNamedEntity {
     private Set<Role> roles;
 
 
-    public User() {
-    }
-
     public User(User u) {
         this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRegistered(), u.getRoles());
     }
@@ -84,41 +85,8 @@ public class User extends AbstractNamedEntity {
         setRoles(roles);
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Date getRegistered() {
-        return registered;
-    }
-
-    public void setRegistered(Date registered) {
-        this.registered = registered;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-
     public boolean isEnabled() {
         return enabled;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setRoles(Collection<Role> roles) {

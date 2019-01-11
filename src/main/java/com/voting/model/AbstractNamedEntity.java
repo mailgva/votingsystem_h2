@@ -1,6 +1,8 @@
 package com.voting.model;
 
 import com.voting.View;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ import javax.validation.constraints.Size;
 
 
 @MappedSuperclass
+@Data
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
     @NotBlank
@@ -24,14 +27,6 @@ public abstract class AbstractNamedEntity extends AbstractBaseEntity {
     protected AbstractNamedEntity(Integer id, String name) {
         super(id);
         this.name = name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     @Override

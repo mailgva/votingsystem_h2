@@ -1,6 +1,10 @@
 package com.voting.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.OnDelete;
@@ -13,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @NamedQueries({
         @NamedQuery(name = DailyMenu.DELETE, query = "DELETE FROM DailyMenu dm WHERE dm.id=:id"),
         @NamedQuery(name = DailyMenu.DELETE_BY_DATE, query = "DELETE FROM DailyMenu dm WHERE dm.date=:date"),
@@ -67,13 +72,14 @@ import java.util.stream.Collectors;
                 }
         )
 })
-
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "daily_menu", uniqueConstraints = {@UniqueConstraint(columnNames = { "date", "rest_id"}, name = "dailymenu_unique_date_rest_idx")})
 public class DailyMenu extends AbstractBaseEntity{
-    public static final String DELETE =             "DailyMenu.delete";
-    public static final String DELETE_BY_DATE =     "DailyMenu.deleteByDate";
-    public static final String GET =                "DailyMenu.get";
+    public static final String DELETE =             "DailyMenu.delete"; //*
+    public static final String DELETE_BY_DATE =     "DailyMenu.deleteByDate"; //*
+    public static final String GET =                "DailyMenu.get"; //*
     public static final String GET_ALL =            "DailyMenu.getAll";
     public static final String GET_BY_DATE =        "DailyMenu.getByDate";
     public static final String GET_BY_NAME_RESTO =  "DailyMenu.getByNameResto";
@@ -96,13 +102,6 @@ public class DailyMenu extends AbstractBaseEntity{
     @NotNull
     private List<DailyMenuDish> dmDishes = new ArrayList<>();;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dish_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @NotNull
-    private Dish dish;*/
-
-
     public DailyMenu(DailyMenu dm) {
         this(dm.getId(), dm.getDate(), dm.getResto(), dm.getDmDishes());
     }
@@ -122,33 +121,6 @@ public class DailyMenu extends AbstractBaseEntity{
         super(id);
         this.date = date;
         this.resto = resto;
-        this.dmDishes = dmDishes;
-    }
-
-    public DailyMenu() {
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Resto getResto() {
-        return resto;
-    }
-
-    public void setResto(Resto resto) {
-        this.resto = resto;
-    }
-
-    public List<DailyMenuDish> getDmDishes() {
-        return dmDishes;
-    }
-
-    private void setDmDishes(List<DailyMenuDish> dmDishes) {
         this.dmDishes = dmDishes;
     }
 
