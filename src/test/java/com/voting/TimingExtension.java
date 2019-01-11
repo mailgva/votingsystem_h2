@@ -26,7 +26,7 @@ public class TimingExtension implements
     @Override
     public void afterTestExecution(ExtensionContext extensionContext) throws Exception {
         stopWatch.stop();
-        log.info("stop stopWatch");
+        log.info("Stop stopWatch");
     }
 
     @Override

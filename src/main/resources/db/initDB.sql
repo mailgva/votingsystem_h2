@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS votes;
+DROP TABLE IF EXISTS daily_menu_detail;
 DROP TABLE IF EXISTS daily_menu;
 DROP TABLE IF EXISTS user_roles;
 DROP TABLE IF EXISTS dishes;

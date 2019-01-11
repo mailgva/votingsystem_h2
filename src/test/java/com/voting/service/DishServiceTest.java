@@ -3,21 +3,28 @@ package com.voting.service;
 import com.voting.testdata.DishTestData;
 import com.voting.model.Dish;
 import com.voting.util.exception.NotFoundException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataAccessException;
-import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@ActiveProfiles("impl")
 public class DishServiceTest extends AbstractServiceTest{
 
     @Autowired
     private DishService service;
+
+    @Autowired
+    private CacheManager cacheManager;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        cacheManager.getCache("dishes").clear();
+    }
 
     @Test
     public void create() {
@@ -46,7 +53,8 @@ public class DishServiceTest extends AbstractServiceTest{
     public void get() {
         Dish dish = service.get(100026);
         Dish expected = DishTestData.dishes.stream().filter(dish1 -> dish1.getId() == 100026).findFirst().get();
-        assertEquals(expected, dish);
+        assertThat(expected).isEqualToIgnoringGivenFields(dish, "imgFilePath");
+        //assertEquals(expected, dish);
     }
 
     @Test
@@ -72,6 +80,7 @@ public class DishServiceTest extends AbstractServiceTest{
     public void findByNameAndPrice() {
         Dish dish = service.getByNameAndPrice("Пицца", 125);
         Dish expected = DishTestData.dishes.stream().filter(dish1 -> dish1.getId() == 100017).findFirst().get();
-        assertEquals(expected, dish);
+        assertThat(expected).isEqualToIgnoringGivenFields(dish, "imgFilePath");
+        //assertEquals(expected, dish);
     }
 }

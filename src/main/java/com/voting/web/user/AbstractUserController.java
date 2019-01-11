@@ -1,6 +1,5 @@
 package com.voting.web.user;
 
-import com.voting.Profiles;
 import com.voting.model.AbstractBaseEntity;
 import com.voting.model.User;
 import com.voting.service.UserService;
@@ -9,7 +8,6 @@ import com.voting.util.exception.ModificationRestrictionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 
 import java.util.List;
 
@@ -22,13 +20,6 @@ public abstract class AbstractUserController {
 
     @Autowired
     private UserService service;
-
-    private boolean modificationRestriction;
-
-    @Autowired
-    public void setEnvironment(Environment environment) {
-        modificationRestriction = environment.acceptsProfiles(Profiles.HEROKU);
-    }
 
     public List<User> getAll() {
         log.info("getAll");
@@ -80,7 +71,7 @@ public abstract class AbstractUserController {
     }
 
     private void checkModificationAllowed(int id) {
-        if (modificationRestriction && id < AbstractBaseEntity.START_SEQ + 2) {
+        if (id < AbstractBaseEntity.START_SEQ + 2) {
             throw new ModificationRestrictionException();
         }
     }

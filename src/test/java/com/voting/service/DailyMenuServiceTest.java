@@ -5,8 +5,10 @@ import com.voting.testdata.RestoTestData;
 import com.voting.model.DailyMenu;
 import com.voting.model.DailyMenuDish;
 import com.voting.model.Resto;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-@ActiveProfiles("impl")
 public class DailyMenuServiceTest extends AbstractServiceTest{
 
     private final SimpleDateFormat SDF = new SimpleDateFormat("dd-MM-yyyy");
@@ -32,6 +33,14 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
 
     @Autowired
     private DishService dishService;
+
+    @Autowired
+    private CacheManager cacheManager;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        cacheManager.getCache("daily_menu").clear();
+    }
 
 
     @Test

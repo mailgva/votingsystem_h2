@@ -8,7 +8,6 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.text.ParseException;
 
-@ActiveProfiles({"impl","postgres"})
 public class AbstractDailyMenuControllerTest extends AbstractControllerTest {
 
     @Autowired

@@ -17,7 +17,6 @@ import java.util.List;
 import static com.voting.testdata.UserTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@ActiveProfiles("impl")
 public class UserServiceTest extends AbstractServiceTest {
 
     @Autowired

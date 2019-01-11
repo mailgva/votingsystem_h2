@@ -7,8 +7,10 @@ import com.voting.model.Vote;
 import com.voting.testdata.RestoTestData;
 import com.voting.util.exception.PastDateException;
 import com.voting.util.exception.TooLateEcxeption;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
@@ -27,19 +29,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-@ActiveProfiles("impl")
 public class VoteServiceTest extends AbstractServiceTest{
     private final SimpleDateFormat SDF = new SimpleDateFormat("dd-MM-yyyy");
 
     @Autowired
     private VoteService service;
 
-    @Autowired
-    private UserService userService;
 
     @Autowired
-    private RestoService restoService;
+    private CacheManager cacheManager;
 
+    @BeforeEach
+    void setUp() throws Exception {
+        cacheManager.getCache("votes").clear();
+    }
 
     @Test
     public void create() throws ParseException {

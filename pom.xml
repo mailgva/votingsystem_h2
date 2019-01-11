@@ -206,12 +206,12 @@
         </dependency>
 
         <!--http://hibernate.org/validator/documentation/getting-started/#unified-expression-language-el-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.el</artifactId>
             <version>${javax-el.version}</version>
             <scope>provided</scope>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>javax.cache</groupId>
@@ -298,6 +298,11 @@
             <groupId>org.webjars</groupId>
             <artifactId>popper.js</artifactId>
             <version>1.14.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootbox</artifactId>
+            <version>4.4.0</version>
         </dependency>
 
         <!--JSON-->

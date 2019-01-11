@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Null;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -49,10 +50,10 @@ public class DishAjaxController extends AbstractDishController {
     }
 
     @PostMapping(headers = "Content-Type= multipart/form-data")
-    public void createOrUpdate(@Valid Dish dish, @RequestParam("img_file") MultipartFile file) throws IOException {
+    public void createOrUpdate(@Valid Dish dish, @RequestParam(required = false, name = "img_file") MultipartFile file) throws IOException {
         String imgFilePath = null;
 
-        if (!file.isEmpty()) {
+        if ((file != null) && (!file.isEmpty())) {
             String fileDetail[] = file.getOriginalFilename().split("\\.");
             String extention = "." + fileDetail[fileDetail.length - 1];
             String newFileName = UUID.randomUUID().toString() + extention;

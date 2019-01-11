@@ -40,6 +40,32 @@ function updateRow(id) {
 }
 
 function deleteRow(id) {
+    bootbox.confirm({
+        message: i18n["common.confirmDelete"],
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            if(! result) return;
+            $.ajax({
+                url: context.ajaxUrl + id,
+                type: "DELETE"
+            }).done(function () {
+                context.updateTable();
+                successNoty("common.deleted");
+            });
+        }
+    });
+}
+
+/*function deleteRecord(id) {
     $.ajax({
         url: context.ajaxUrl + id,
         type: "DELETE"
@@ -47,7 +73,7 @@ function deleteRow(id) {
         context.updateTable();
         successNoty("common.deleted");
     });
-}
+}*/
 
 function updateTableByData(data) {
     context.datatableApi.clear().rows.add(data).draw();
@@ -58,7 +84,7 @@ function save() {
 
     $.each($(form).find("input"), function(i, item) {
         if($(item).prop("type") === "file") {
-            aForm.append($(item).prop("name"), $(item).get(0).files[0]);
+            aForm.append($(item).prop("name"), $(item).get(0).files[0] != undefined ? $(item).get(0).files[0] : null);
         } else {
             aForm.append($(item).prop("name"), $(item).val());
         }

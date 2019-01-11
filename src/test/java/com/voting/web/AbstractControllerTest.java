@@ -1,6 +1,5 @@
 package com.voting.web;
 
-import com.voting.AllActiveProfileResolver;
 import com.voting.repository.JpaUtil;
 import com.voting.service.UserService;
 import com.voting.util.exception.ErrorType;
@@ -26,10 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         "classpath:spring/spring-mvc.xml",
         "classpath:spring/spring-db.xml"
 })
-//@WebAppConfiguration
-//@ExtendWith(SpringExtension.class)
 @Transactional
-@ActiveProfiles(resolver = AllActiveProfileResolver.class)
 abstract public class AbstractControllerTest {
 
     private static final CharacterEncodingFilter CHARACTER_ENCODING_FILTER = new CharacterEncodingFilter();
