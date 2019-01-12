@@ -1,0 +1,2 @@
+# votingsystem_h2
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/944e8b6459c2456b840d5e1e06d3b89a)](https://app.codacy.com/app/mailgva/votingsystem_h2?utm_source=github.com&utm_medium=referral&utm_content=mailgva/votingsystem_h2&utm_campaign=Badge_Grade_Dashboard)
