@@ -21,7 +21,9 @@ public interface VoteService {
 
     List<Vote> getBetweenDateTimes(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId);
 
-    List<Vote> getAll(int userId);
+    List<Vote> getAll();
+
+    List<Vote> getByDateUsers(Date date);
 
     void update(Vote vote, int userId) throws NotFoundException, TooLateEcxeption;
 

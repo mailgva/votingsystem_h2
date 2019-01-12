@@ -65,16 +65,6 @@ function deleteRow(id) {
     });
 }
 
-/*function deleteRecord(id) {
-    $.ajax({
-        url: context.ajaxUrl + id,
-        type: "DELETE"
-    }).done(function () {
-        context.updateTable();
-        successNoty("common.deleted");
-    });
-}*/
-
 function updateTableByData(data) {
     context.datatableApi.clear().rows.add(data).draw();
 }

@@ -17,12 +17,14 @@ public interface VoteRepository {
     Vote get(int id, int userId);
 
     // ORDERED dateTime desc
-    List<Vote> getAll(int userId);
+    List<Vote> getAll();
 
     // ORDERED dateTime desc
     List<Vote> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId);
 
     Vote getByDate(Date date, int userId);
 
-    List<Vote> getAllByDate(Date date);
+    List<Vote> getByDateUsers(Date date);
+
+
 }

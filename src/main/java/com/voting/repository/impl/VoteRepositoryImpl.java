@@ -39,8 +39,8 @@ public class VoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
-    public List<Vote> getAll(int userId) {
-        return crudVoteRepository.getAll(userId);
+    public List<Vote> getAll() {
+        return crudVoteRepository.getAll();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class VoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
-    public List<Vote> getAllByDate(Date date) {
+    public List<Vote> getByDateUsers(Date date) {
         return crudVoteRepository.getAllByDate(date);
     }
 

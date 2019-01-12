@@ -87,7 +87,7 @@ public class VoteServiceTest extends AbstractServiceTest{
 
     @Test
     public void getAll() {
-        assertEquals(service.getAll(ADMIN_ID).size(), 3);
+        assertEquals(service.getAll().size(), 6);
     }
 
 

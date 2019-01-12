@@ -1,4 +1,4 @@
-const dishAjaxUrl = "ajax/dishes/";
+const dishAjaxUrl = "ajax/admin/dishes/";
 
 $(function () {
     makeEditable({
@@ -22,7 +22,7 @@ $(function () {
                         "orderable": false,
                         "defaultContent": "",
                         "render": function (data, type, row) {
-                            if (type === "display" && data != undefined) {
+                            if (type === "display" && (data != undefined) && (data != "")) {
                                 return "<img src='" + data + "' class='img-thumbnail img-block'/>";
                             }
                             return data;

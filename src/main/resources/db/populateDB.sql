@@ -33,11 +33,11 @@ INSERT INTO dishes (name, price, img_file) VALUES
 ('Салат Шефский',70,'pictures/dishes/0d1a9e02-cedc-4052-b5cb-fc098943d3d1.jpg'), --100012
 ('Салат Греческий особенный',80,'pictures/dishes/ab4f5e29-24c0-4cd9-9994-cedb25070970.jpg'), --100013
 ('Стейк от шефа',140,'pictures/dishes/defc1761-8bf9-4e09-a87c-424873a1c416.jpg'), --100014
-('Шашлык шея',130,''), --100015
+('Шашлык шея',130,null), --100015
 ('Запеченные овощи',110,'pictures/dishes/ovoschi.jpg'), --100016
 ('Пицца',125,'pictures/dishes/pizza.jpg'), --100017
 ('Картошка Фри',40,'pictures/dishes/348ae3fa-e1db-45eb-9f99-63a2561efec6.jpg'), --100018
-('Картошка запеченная',45,''), --100019
+('Картошка запеченная',45,null), --100019
 ('Стейк с картошкой',170,'pictures/dishes/66b57721-6298-4282-afb9-af94db01f7b2.jpg'), --100020
 ('Шашлык телятина',135,'pictures/dishes/4db0365d-ac04-40db-af89-60a1f53829d0.jpg'), --100021
 ('Запеченные овощи в тандыре',70,'pictures/dishes/1651896d-b565-4bd9-9948-13109f90188b.jpg'), --100022

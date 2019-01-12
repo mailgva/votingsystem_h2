@@ -1,4 +1,4 @@
-const restoAjaxUrl = "ajax/resto/";
+const restoAjaxUrl = "ajax/admin/resto/";
 
 function enable(chkbox, id) {
     const enabled = chkbox.is(":checked");

@@ -31,7 +31,7 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     // ORDERED dateTime desc
     @EntityGraph(attributePaths = {"resto" , "user"})
-    List<Vote> getAll(@Param("userId") int userId);
+    List<Vote> getAll();
 
     // ORDERED dateTime desc
     //List<Vote> getBetween(Date startDate, Date endDate, int userId);
@@ -42,5 +42,5 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.date=:date")
     Vote getByDate(@Param("date") Date date, @Param("userId") int userId);
 
-    List<Vote> getAllByDate(Date date);
+    List<Vote> getAllByDate(@Param("date") Date date);
 }

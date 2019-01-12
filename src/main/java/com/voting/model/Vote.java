@@ -20,7 +20,7 @@ import java.util.List;
         @NamedQuery(name = Vote.DELETE, query = "DELETE FROM Vote v WHERE v.id=:id AND v.user.id=:userId"),
         @NamedQuery(name = Vote.ALL_SORTED, query = "SELECT v FROM Vote v " +
                 "JOIN FETCH v.resto JOIN FETCH v.user " +
-                "WHERE v.user.id=:userId ORDER BY v.date DESC"),
+                "ORDER BY v.date DESC"),
         @NamedQuery(name = Vote.GET_BETWEEN, query = "SELECT v FROM Vote v " +
                 "JOIN FETCH v.resto JOIN FETCH v.user " +
                 "WHERE v.user.id=:userId AND v.date BETWEEN :startDate AND :endDate ORDER BY v.date DESC"),
@@ -32,7 +32,7 @@ import java.util.List;
                 "WHERE v.user.id=:userId AND v.date=:date "),
         @NamedQuery(name = Vote.GET_ALL_BY_DATE, query = "SELECT v FROM Vote v " +
                 "JOIN FETCH v.resto JOIN FETCH v.user " +
-                "WHERE v.date=:date"),
+                "WHERE v.date=:date ORDER BY v.resto.name, v.user.name "),
 })
 @NoArgsConstructor
 @AllArgsConstructor

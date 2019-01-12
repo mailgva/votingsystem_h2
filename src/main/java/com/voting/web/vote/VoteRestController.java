@@ -1,8 +1,8 @@
-package com.voting.web.resto;
+package com.voting.web.vote;
 
 import com.voting.View;
-import com.voting.model.Dish;
-import com.voting.model.Resto;
+import com.voting.model.Vote;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,28 +11,35 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping(RestoRestController.REST_URL)
-public class RestoRestController extends AbstractRestoController {
-    static final String REST_URL = "/rest/admin/restaurants";
+@RequestMapping(VoteRestController.REST_URL)
+public class VoteRestController extends AbstractVoteController {
+    static final String REST_URL = "/rest/admin/votes";
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Resto> getAll() {
+    public List<Vote> getAll() {
         return super.getAll();
     }
 
     @Override
+    @GetMapping(value = "/bydate/", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Vote> getByDateUsers(@RequestParam(value = "date") @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
+        return super.getByDateUsers(date);
+    }
+
+    @Override
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Resto get(@PathVariable("id") int id) {
+    public Vote get(@PathVariable("id") int id) {
         return super.get(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Resto> createWithLocation(@Validated(View.Web.class) @RequestBody Resto resto) {
-        Resto created = super.create(resto);
+    public ResponseEntity<Vote> createWithLocation(@Validated(View.Web.class) @RequestBody Vote vote) {
+        Vote created = super.create(vote);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
@@ -51,8 +58,8 @@ public class RestoRestController extends AbstractRestoController {
     @Override
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@Validated(View.Web.class) @RequestBody Resto resto, @PathVariable("id") int id) {
-        super.update(resto, id);
+    public void update(@Validated(View.Web.class) @RequestBody Vote vote, @PathVariable("id") int id) {
+        super.update(vote, id);
     }
 
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.util.Date;
+import java.util.List;
 
 import static com.voting.util.ValidationUtil.assureIdConsistent;
 
@@ -17,15 +18,11 @@ import static com.voting.util.ValidationUtil.assureIdConsistent;
 public class AbstractVoteController {
     private static final Logger log = LoggerFactory.getLogger(AbstractVoteController.class);
 
-    private final VoteService service;
-
-    private final UserService userService;
+    @Autowired
+    private VoteService service;
 
     @Autowired
-    public AbstractVoteController(VoteService service, UserService userService) {
-        this.service = service;
-        this.userService = userService;
-    }
+    private UserService userService;
 
     public Vote get(int id) {
         int userId = SecurityUtil.authUserId();
@@ -33,10 +30,23 @@ public class AbstractVoteController {
         return service.get(id, userId);
     }
 
+    public List<Vote> getAll() {
+        int userId = SecurityUtil.authUserId();
+        log.info("get meal {} for user {}", userId);
+        return service.getAll();
+    }
+
     public Vote getByDate(Date date) {
         int userId = SecurityUtil.authUserId();
         log.info("getByDate vote {} for user {}", date, userId);
         return service.getByDate(date, userId);
+    }
+
+
+    public List<Vote> getByDateUsers(Date date) {
+        int userId = SecurityUtil.authUserId();
+        log.info("getByDate vote {} for all users", date);
+        return service.getByDateUsers(date);
     }
 
 

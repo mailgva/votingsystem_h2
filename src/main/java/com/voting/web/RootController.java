@@ -60,6 +60,14 @@ public class RootController extends AbstractUserController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/votes")
+    public String votes(Model model) {
+        model.addAttribute("date", LocalDate.now().toString());
+        model = setModelAttrs(model);
+        return "votes";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/dishes")
     public String dishes(Model model) {
         model = setModelAttrs(model);

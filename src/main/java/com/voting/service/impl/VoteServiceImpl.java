@@ -50,8 +50,8 @@ public class VoteServiceImpl implements VoteService {
 
     @Cacheable("votes")
     @Override
-    public List<Vote> getAll(int userId) {
-        return repository.getAll(userId);
+    public List<Vote> getAll() {
+        return repository.getAll();
     }
 
     @CacheEvict(value = "votes", allEntries = true)
@@ -77,5 +77,10 @@ public class VoteServiceImpl implements VoteService {
     @Override
     public Vote getByDate(Date date, int userId) {
         return repository.getByDate(date, userId);
+    }
+
+    @Override
+    public List<Vote> getByDateUsers(Date date) {
+        return repository.getByDateUsers(date);
     }
 }

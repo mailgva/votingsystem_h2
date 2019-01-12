@@ -25,7 +25,7 @@ import java.util.UUID;
 import static com.voting.util.Util.createErrorStrings;
 
 @RestController
-@RequestMapping("/ajax/dishes")
+@RequestMapping("/ajax/admin/dishes")
 public class DishAjaxController extends AbstractDishController {
     private final String UPLOADED_DIR_PATH = System.getenv("VOTING_ROOT") + "/images/dishes/";
     private final String DB_DIR_PATH = "pictures/dishes/";
@@ -71,8 +71,5 @@ public class DishAjaxController extends AbstractDishController {
             super.update(dish, dish.getId());
         }
     }
-
-
-
 
 }

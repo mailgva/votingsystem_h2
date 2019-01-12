@@ -1,8 +1,8 @@
-package com.voting.web.resto;
+package com.voting.web.dish;
 
 import com.voting.View;
 import com.voting.model.Dish;
-import com.voting.model.Resto;
+import com.voting.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,25 +14,25 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(RestoRestController.REST_URL)
-public class RestoRestController extends AbstractRestoController {
-    static final String REST_URL = "/rest/admin/restaurants";
+@RequestMapping(DishRestController.REST_URL)
+public class DishRestController extends AbstractDishController {
+    static final String REST_URL = "/rest/admin/dishes";
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Resto> getAll() {
+    public List<Dish> getAll() {
         return super.getAll();
     }
 
     @Override
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Resto get(@PathVariable("id") int id) {
+    public Dish get(@PathVariable("id") int id) {
         return super.get(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Resto> createWithLocation(@Validated(View.Web.class) @RequestBody Resto resto) {
-        Resto created = super.create(resto);
+    public ResponseEntity<Dish> createWithLocation(@Validated(View.Web.class) @RequestBody Dish dish) {
+        Dish created = super.create(dish);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
@@ -51,8 +51,9 @@ public class RestoRestController extends AbstractRestoController {
     @Override
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@Validated(View.Web.class) @RequestBody Resto resto, @PathVariable("id") int id) {
-        super.update(resto, id);
+    public void update(@Validated(View.Web.class) @RequestBody Dish dish, @PathVariable("id") int id) {
+        super.update(dish, id);
     }
 
 }
+
