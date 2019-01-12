@@ -9,6 +9,7 @@ $(function () {
                     "dataSrc": ""
                 },
                 "paging": false,
+                "language": dataTablesLang,
                 "info": true,
                 "columns": [
                     {

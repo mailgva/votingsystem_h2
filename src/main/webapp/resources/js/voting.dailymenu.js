@@ -127,6 +127,7 @@ function drawTableBodyAuto(table, data) {
     $(table).DataTable({
         "searching": false,
         "paging": false,
+        "language": dataTablesLang,
         "info": false,
         "data": data,
         "columns": [

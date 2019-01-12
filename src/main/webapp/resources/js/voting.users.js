@@ -26,6 +26,7 @@ $(function () {
                 },
                 "paging": false,
                 "info": true,
+                "language": dataTablesLang,
                 "columns": [
                     {
                         "data": "name"
