@@ -17,4 +17,6 @@ public class RestoTestData {
             new Resto(restoId++, "Ресторан 5")
     );
 
+    private RestoTestData(){}
+
 }

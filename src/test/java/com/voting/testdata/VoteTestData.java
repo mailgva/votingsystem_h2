@@ -13,6 +13,8 @@ import java.util.List;
 import static com.voting.model.AbstractBaseEntity.START_SEQ;
 
 public class VoteTestData {
+    private VoteTestData(){}
+
     private static LocalDate ld = LocalDate.of(2018, Month.NOVEMBER, 21);
 
     private final static Date date1 = Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());

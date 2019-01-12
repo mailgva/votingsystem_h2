@@ -111,10 +111,17 @@ public class DailyMenu extends AbstractBaseEntity{
         this.resto = resto;
     }
 
+    public DailyMenu(Integer id, @NotNull Date date, @NotNull Resto resto) {
+        super(id);
+        this.date = date;
+        this.resto = resto;
+    }
+
     public DailyMenu(@NotNull Date date, @NotNull Resto resto, List<DailyMenuDish> dmDishes) {
         this.date = date;
         this.resto = resto;
         this.dmDishes = dmDishes;
+        setDailyMenuIdToDailyMenuDishes();
     }
 
     public DailyMenu(Integer id, @NotNull Date date, @NotNull Resto resto, @NotNull List<DailyMenuDish> dmDishes) {
@@ -122,6 +129,7 @@ public class DailyMenu extends AbstractBaseEntity{
         this.date = date;
         this.resto = resto;
         this.dmDishes = dmDishes;
+        setDailyMenuIdToDailyMenuDishes();
     }
 
     public void addDailyMenuDish(DailyMenuDish dmDish) {
@@ -138,6 +146,10 @@ public class DailyMenu extends AbstractBaseEntity{
         return this.getDmDishes().stream()
                 .map(dailyMenuDish -> dailyMenuDish.getDish())
                 .collect(Collectors.toList());
+    }
+
+    private void setDailyMenuIdToDailyMenuDishes() {
+        dmDishes.stream().forEach(dailyMenuDish -> dailyMenuDish.setDailyMenu(this));
     }
 
     @Override

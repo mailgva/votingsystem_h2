@@ -64,7 +64,7 @@ public class VoteServiceTest extends AbstractServiceTest{
             Date date = SDF.parse("02-11-2018");
 
             Vote vote = new Vote(user, resto, date, LocalDateTime.now());
-            service.create(vote, 100001);
+            service.create(vote, ADMIN_ID);
 
             Vote newVote = service.getByDate(date, user.getId());
             newVote.setResto(TestUtil.getByName(RestoTestData.restos, "Ресторан 3"));

@@ -15,13 +15,27 @@
         <jdbc:script encoding="utf-8" location="classpath:db/${jdbc.populateSql}"/>
     </jdbc:initialize-database>
 
-    <beans>
+    <!--class="org.apache.tomcat.jdbc.pool.DataSource"-->
+    <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource"-->
+
+    <!--<beans>
         <context:property-placeholder location="classpath:/db/db.properties" system-properties-mode="OVERRIDE"/>
         <bean id="dataSource"
-              class="org.apache.tomcat.jdbc.pool.DataSource"
+              class="org.springframework.jdbc.datasource.DriverManagerDataSource"
               p:url="${database.url}"
               p:driverClassName="${database.driverClassName}"
              />
+    </beans>-->
+
+    <beans>
+        <context:property-placeholder location="classpath:/db/db.properties" system-properties-mode="OVERRIDE"/>
+        <bean id="dataSource" class="org.h2.jdbcx.JdbcConnectionPool" destroy-method="dispose">
+            <constructor-arg>
+                <bean class="org.h2.jdbcx.JdbcDataSource">
+                    <property name="URL" value="${database.url}"/>
+                </bean>
+            </constructor-arg>
+        </bean>
     </beans>
 
     <beans>

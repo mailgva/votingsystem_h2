@@ -29,22 +29,10 @@ public class DailyMenuDish extends AbstractBaseEntity {
         this.dish = dish;
     }
 
-    /*public DailyMenuDish(Integer id) {
+    public DailyMenuDish(Integer id, Dish dish) {
         super(id);
-    }
-
-
-
-    public DailyMenuDish(@NotNull DailyMenu dailyMenu, Dish dish) {
-        this.dailyMenu = dailyMenu;
         this.dish = dish;
     }
-
-    public DailyMenuDish(Integer id, @NotNull DailyMenu dailyMenu, Dish dish) {
-        super(id);
-        this.dailyMenu = dailyMenu;
-        this.dish = dish;
-    }*/
 
     @Override
     public String toString() {

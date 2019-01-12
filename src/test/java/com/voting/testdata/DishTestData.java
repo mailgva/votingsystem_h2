@@ -42,10 +42,6 @@ public class DishTestData {
             new Dish(dishId++, "Рагу", 75.0)
     );
 
-   /* public static void main(String[] args) {
-        System.out.println(TestUtil.getById(dishes, 100017));
-        System.out.println(TestUtil.getByName(dishes, "Салат Греческий"));
-
-    }*/
+   private DishTestData(){}
 
 }

@@ -114,6 +114,15 @@
                     </deployables>
                 </configuration>
             </plugin>-->
+            <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-maven-plugin -->
+
+            <!--<version>9.4.15-SNAPSHOT</version>-->
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.14.v20181114</version>
+            </plugin>
 
 
         </plugins>
@@ -425,11 +434,11 @@
                     <artifactId>h2</artifactId>
                     <version>${h2.version}</version>
                 </dependency>
-                <dependency>
+                <!--<dependency>
                     <groupId>org.apache.tomcat</groupId>
                     <artifactId>tomcat-jdbc</artifactId>
                     <version>${tomcat.version}</version>
-                </dependency>
+                </dependency>-->
             </dependencies>
         </profile>
     </profiles>
