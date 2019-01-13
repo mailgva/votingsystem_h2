@@ -12,10 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Repository
 @Transactional(readOnly = true)
@@ -50,7 +48,8 @@ public class DailyMenuRepositoryImpl implements DailyMenuRepository {
 
     @Override
     public List<DailyMenu> getByDate(Date date) {
-        List<DailyMenu> result = crudDailyMenuRepository.getByDate(date);
+        Date testDate = new GregorianCalendar(2018, Calendar.NOVEMBER,21).getTime();
+        List<DailyMenu> result = crudDailyMenuRepository.getByDate(testDate);
         System.out.println("=====================START=============");
         result.forEach(System.out::println);
         System.out.println("=====================END=============");
