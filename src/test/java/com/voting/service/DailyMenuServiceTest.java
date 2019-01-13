@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
@@ -49,7 +50,7 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    @Transactional
+    @Transactional(propagation = Propagation.NEVER)
     public void create() throws ParseException {
         Date date = SDF.parse("21-11-2018");
         Resto resto = restoService.get(TestUtil.getByName(RestoTestData.restos, "Ресторан 4").getId());
@@ -75,7 +76,7 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    @Transactional
+    @Transactional(propagation = Propagation.NEVER)
     public void update() {
         DailyMenu dailyMenu = service.get(100040);
         dailyMenu.setResto(restoService.get(100005));
@@ -89,6 +90,7 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     }
 
     @Test
+    @Transactional(propagation = Propagation.NEVER)
     public void delete() throws ParseException {
         Date date = SDF.parse("21-11-2018");
         service.delete(100039);
@@ -97,7 +99,6 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    @Transactional
     public void get() {
         DailyMenu dailyMenu = service.get(100038);
         assertEquals(dailyMenu.getResto(), TestUtil.getById(RestoTestData.restos, 100003));
