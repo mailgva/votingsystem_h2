@@ -56,6 +56,9 @@ public class DailyMenuServiceImpl implements DailyMenuService {
     @Override
     public Set<DailyMenu> getByDate(Date date) {
         System.out.println("==========DATE: " + date);
+        System.out.println("==========START");
+        repository.getAll().forEach(System.out::println);
+        System.out.println("==========END");
         return new HashSet<>(repository.getByDate(date));
     }
 
