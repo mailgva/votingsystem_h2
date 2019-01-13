@@ -1,6 +1,7 @@
 package com.voting.repository.impl.crud;
 
 import com.voting.model.DailyMenu;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -22,7 +23,9 @@ public interface CrudDailyMenuRepository extends JpaRepository<DailyMenu, Intege
     int delete(@Param("id") int id);
 
 
-    @Query("SELECT dm FROM DailyMenu dm JOIN FETCH dm.resto LEFT JOIN FETCH dm.dmDishes WHERE dm.date=:date ORDER BY dm.resto.name ASC")
+    //@Query("SELECT dm FROM DailyMenu dm JOIN FETCH dm.resto LEFT JOIN FETCH dm.dmDishes WHERE dm.date=:date ORDER BY dm.resto.name ASC")
+    @EntityGraph(attributePaths = {"dmDishes"}, type = EntityGraph.EntityGraphType.LOAD)
+    @Query("SELECT dm FROM DailyMenu dm WHERE dm.date=:date ORDER BY dm.resto.name ASC")
     List<DailyMenu> getByDate(@Param("date") Date date);
 
     DailyMenu findById(int id);
