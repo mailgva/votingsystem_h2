@@ -70,7 +70,6 @@ public class VoteServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    @Transactional
     public void get() throws ParseException {
         Date date = SDF.parse("21-11-2018");
         Vote actual = VoteTestData.getByDateUser(date, ADMIN);

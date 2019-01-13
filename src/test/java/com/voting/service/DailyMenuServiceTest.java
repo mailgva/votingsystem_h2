@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -40,7 +42,6 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
 
 
     @Test
-    @Transactional
     public void getByDate() throws ParseException {
         Date date = SDF.parse("21-11-2018");
         Set<DailyMenu> dm = service.getByDate(date);
@@ -48,6 +49,7 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     }
 
     @Test
+    @Transactional
     public void create() throws ParseException {
         Date date = SDF.parse("21-11-2018");
         Resto resto = restoService.get(TestUtil.getByName(RestoTestData.restos, "Ресторан 4").getId());
@@ -100,5 +102,6 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
         DailyMenu dailyMenu = service.get(100038);
         assertEquals(dailyMenu.getResto(), TestUtil.getById(RestoTestData.restos, 100003));
     }
+
 
 }
