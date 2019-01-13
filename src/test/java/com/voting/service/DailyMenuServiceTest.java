@@ -50,7 +50,7 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    @Transactional(propagation = Propagation.NEVER)
+    @Transactional(propagation = Propagation.NESTED)
     public void create() throws ParseException {
         Date date = SDF.parse("21-11-2018");
         Resto resto = restoService.get(TestUtil.getByName(RestoTestData.restos, "Ресторан 4").getId());
@@ -76,7 +76,7 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    @Transactional(propagation = Propagation.NEVER)
+    @Transactional(propagation = Propagation.NESTED)
     public void update() {
         DailyMenu dailyMenu = service.get(100040);
         dailyMenu.setResto(restoService.get(100005));
@@ -90,7 +90,7 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    @Transactional(propagation = Propagation.NEVER)
+    @Transactional(propagation = Propagation.NESTED)
     public void delete() throws ParseException {
         Date date = SDF.parse("21-11-2018");
         service.delete(100039);
