@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
                         "LEFT JOIN FETCH dm.dmDishes " +
                         "ORDER BY dm.date DESC, dm.resto.name "),
         /*@NamedQuery(name = DailyMenu.GET_BY_DATE,
-                query = "SELECT dm FROM DailyMenu dm " +
+                query = "SELECT distinct dm FROM DailyMenu dm " +
                         "JOIN FETCH dm.resto " +
                         "LEFT JOIN FETCH dm.dmDishes " +
                         "WHERE dm.date=:date ORDER BY dm.resto.name"),*/

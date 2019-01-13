@@ -48,7 +48,11 @@ public class DailyMenuRepositoryImpl implements DailyMenuRepository {
 
     @Override
     public List<DailyMenu> getByDate(Date date) {
-        return crudDailyMenuRepository.getByDateN(date);
+        List<DailyMenu> result = crudDailyMenuRepository.getByDate(date);
+        System.out.println("=====================START=============");
+        result.forEach(System.out::println);
+        System.out.println("=====================END=============");
+        return result;
     }
 
     @Override
