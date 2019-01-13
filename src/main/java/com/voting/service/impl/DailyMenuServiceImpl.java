@@ -52,7 +52,7 @@ public class DailyMenuServiceImpl implements DailyMenuService {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
-    //@Cacheable("daily_menu")
+    @Cacheable("daily_menu")
     @Override
     public Set<DailyMenu> getByDate(Date date) {
         return new HashSet<>(repository.getByDate(date));
