@@ -47,7 +47,7 @@ public class DailyMenuTestData {
     }
 
     public static void assertMatch(DailyMenu actual, DailyMenu expected) {
-        assertThat(actual).isEqualToIgnoringGivenFields(expected,  "dmDishes");
+        assertThat(actual).isEqualToIgnoringGivenFields(expected,  "dmDishes","date");
         //assertThat(actual).isEqualTo(expected);
     }
 
@@ -57,7 +57,7 @@ public class DailyMenuTestData {
     }
 
     public static void assertMatch(Iterable<DailyMenu> actual, Iterable<DailyMenu> expected) {
-        assertThat(actual).usingElementComparatorIgnoringFields("dmDishes").isEqualTo(expected);
+        assertThat(actual).usingElementComparatorIgnoringFields("dmDishes","date").isEqualTo(expected);
     }
 
 

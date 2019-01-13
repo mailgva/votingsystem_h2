@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -91,20 +92,5 @@ public class Vote extends AbstractBaseEntity {
                 ", \ndateTime=" + dtf.format(dateTime) +
                 '}';
     }
-
-       /*public Vote(User user, Resto resto, Date date, LocalDateTime dateTime) {
-        this.user = user;
-        this.resto = resto;
-        this.date = date;
-        this.dateTime = dateTime;
-    }
-
-    public Vote(Integer id, User user, Resto resto, Date date, LocalDateTime dateTime) {
-        super(id);
-        this.user = user;
-        this.resto = resto;
-        this.date = date;
-        this.dateTime = dateTime;
-    }*/
 
 }

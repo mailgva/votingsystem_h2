@@ -17,6 +17,8 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.annotation.PostConstruct;
 
+import java.util.TimeZone;
+
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -54,6 +56,7 @@ abstract public class AbstractControllerTest {
 
     @PostConstruct
     private void postConstruct() {
+        TimeZone.setDefault(TimeZone.getTimeZone("EET"));
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
                 .addFilter(CHARACTER_ENCODING_FILTER)
