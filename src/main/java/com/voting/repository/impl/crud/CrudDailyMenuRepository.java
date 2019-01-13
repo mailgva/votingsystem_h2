@@ -22,7 +22,7 @@ public interface CrudDailyMenuRepository extends JpaRepository<DailyMenu, Intege
     int delete(@Param("id") int id);
 
 
-    @Query("SELECT dm FROM DailyMenu dm JOIN FETCH dm.resto LEFT JOIN FETCH dm.dmDishes WHERE dm.date=:date ORDER BY dm.resto.name")
+    @Query("SELECT dm FROM DailyMenu dm JOIN FETCH dm.resto LEFT JOIN FETCH dm.dmDishes WHERE dm.date=:date ORDER BY dm.resto.name ASC")
     List<DailyMenu> getByDate(@Param("date") Date date);
 
     DailyMenu findById(int id);

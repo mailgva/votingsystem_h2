@@ -43,7 +43,7 @@ public class DailyMenuRepositoryImpl implements DailyMenuRepository {
 
     @Override
     public DailyMenu get(int id) {
-        return crudDailyMenuRepository.getOne(id);
+        return crudDailyMenuRepository.findById(id);
     }
 
     @Override

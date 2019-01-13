@@ -23,8 +23,8 @@ public class VotingRestController extends AbstractVotingController {
 
     @PostMapping
     public void setUserVote(@RequestParam(value = "date") @DateTimeFormat(pattern="yyyy-MM-dd") Date date,
-                            @RequestParam(value = "restoId") Resto resto /*Integer restoId*/) {
-        super.setUserVote(date, resto /*restoId*/);
+                            @RequestParam(value = "restoId") Resto resto) {
+        super.setUserVote(date, resto );
     }
 
 }

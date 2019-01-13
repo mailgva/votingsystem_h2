@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -25,6 +26,14 @@ public class DailyMenuRestController extends AbstractDailyMenuController {
     public DailyMenu get(@PathVariable("id") int id) {
         return super.get(id);
     }
+
+
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<DailyMenu> getAll() {
+        return super.getAll();
+    }
+
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DailyMenu> createWithLocation(@Validated(View.Web.class) @RequestBody DailyMenu dailyMenu) {

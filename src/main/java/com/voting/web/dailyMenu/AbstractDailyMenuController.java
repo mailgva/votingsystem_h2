@@ -26,6 +26,11 @@ public abstract class AbstractDailyMenuController {
         return service.get(id);
     }
 
+    public List<DailyMenu> getAll() {
+        log.info("getAll of DailyMenu");
+        return service.getAll();
+    }
+
     public void delete(int id) {
         log.info("delete DailyMenu {} ", id);
         service.delete(id);
