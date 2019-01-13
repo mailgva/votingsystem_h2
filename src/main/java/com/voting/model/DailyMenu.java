@@ -32,11 +32,11 @@ import java.util.stream.Collectors;
                         "JOIN FETCH dm.resto " +
                         "LEFT JOIN FETCH dm.dmDishes " +
                         "ORDER BY dm.date DESC, dm.resto.name "),
-        @NamedQuery(name = DailyMenu.GET_BY_DATE,
+        /*@NamedQuery(name = DailyMenu.GET_BY_DATE,
                 query = "SELECT dm FROM DailyMenu dm " +
                         "JOIN FETCH dm.resto " +
                         "LEFT JOIN FETCH dm.dmDishes " +
-                        "WHERE dm.date=:date ORDER BY dm.resto.name"),
+                        "WHERE dm.date=:date ORDER BY dm.resto.name"),*/
         @NamedQuery(name = DailyMenu.GET_BY_NAME_RESTO,
                 query = "SELECT dm FROM DailyMenu dm " +
                         "JOIN FETCH dm.resto " +
@@ -82,7 +82,7 @@ public class DailyMenu extends AbstractBaseEntity{
     public static final String DELETE_BY_DATE =     "DailyMenu.deleteByDate"; //*
     public static final String GET =                "DailyMenu.get"; //*
     public static final String GET_ALL =            "DailyMenu.getAll";
-    public static final String GET_BY_DATE =        "DailyMenu.getByDate";
+    //public static final String GET_BY_DATE =        "DailyMenu.getByDate";
     public static final String GET_BY_NAME_RESTO =  "DailyMenu.getByNameResto";
     public static final String GENERATE_DAILY_MENU =  "DailyMenu.generate_DailyMenu";
     public static final String GENERATE_STR_DAILY_MENU =  "DailyMenu.generate_StrDailyMenu";
