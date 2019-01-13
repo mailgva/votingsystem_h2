@@ -26,7 +26,7 @@ public interface CrudDailyMenuRepository extends JpaRepository<DailyMenu, Intege
     //@Query("SELECT dm FROM DailyMenu dm JOIN FETCH dm.resto LEFT JOIN FETCH dm.dmDishes WHERE dm.date=:date ORDER BY dm.resto.name ASC")
     @EntityGraph(attributePaths = {"dmDishes"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT dm FROM DailyMenu dm WHERE dm.date=:date ORDER BY dm.resto.name ASC")
-    List<DailyMenu> getByDate(@Param("date") Date date);
+    List<DailyMenu> getByDateN(@Param("date") Date date);
 
     DailyMenu findById(int id);
 
