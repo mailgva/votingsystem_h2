@@ -52,13 +52,9 @@ public class DailyMenuServiceImpl implements DailyMenuService {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
-    @Cacheable("daily_menu")
+    //@Cacheable("daily_menu")
     @Override
     public Set<DailyMenu> getByDate(Date date) {
-        System.out.println("==========DATE: " + date);
-        System.out.println("==========START");
-        repository.getAll().forEach(System.out::println);
-        System.out.println("==========END");
         return new HashSet<>(repository.getByDate(date));
     }
 
