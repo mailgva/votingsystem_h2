@@ -83,7 +83,6 @@ class ProfileRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    @Disabled
     void testUpdateInvalid() throws Exception {
         UserTo updatedTo = new UserTo(null, null, "password", null);
 

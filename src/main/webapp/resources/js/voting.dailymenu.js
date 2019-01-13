@@ -171,7 +171,7 @@ function generateDailyMenu() {
     let fDate    = $('#filter :input[name="date"]').val();
     $.ajax({
         type: "POST",
-        url: "ajax/dailymenu/",
+        url: "ajax/admin/dailymenu/",
         data: { date: fDate}
     }).done(function () {
         updateFace();

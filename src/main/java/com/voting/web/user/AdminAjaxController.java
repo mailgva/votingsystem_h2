@@ -5,14 +5,10 @@ import com.voting.to.UserTo;
 import com.voting.util.UserUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import static com.voting.util.Util.createErrorStrings;
 
 @RestController
 @RequestMapping("/ajax/admin/users")

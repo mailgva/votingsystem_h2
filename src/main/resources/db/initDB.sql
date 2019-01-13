@@ -13,9 +13,9 @@ CREATE SEQUENCE global_seq START 100000;
 CREATE TABLE users
 (
   id               INTEGER default next value for global_seq primary key,
-  name             VARCHAR(255)                 NOT NULL,
-  email            VARCHAR(255)                 NOT NULL,
-  password         VARCHAR(255)                 NOT NULL,
+  name             VARCHAR(255)            NOT NULL,
+  email            VARCHAR(255)            NOT NULL,
+  password         VARCHAR(255)            NOT NULL,
   registered       TIMESTAMP DEFAULT now() NOT NULL,
   enabled          BOOL DEFAULT TRUE       NOT NULL
 );

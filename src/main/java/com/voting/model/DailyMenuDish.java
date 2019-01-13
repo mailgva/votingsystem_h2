@@ -1,5 +1,6 @@
 package com.voting.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class DailyMenuDish extends AbstractBaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "daily_menu_id", nullable=false)
     @NotNull
+    @JsonIgnore
     private DailyMenu dailyMenu;
 
     @OneToOne(fetch = FetchType.EAGER)

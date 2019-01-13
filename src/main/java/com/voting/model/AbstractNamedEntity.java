@@ -1,7 +1,6 @@
 package com.voting.model;
 
 import com.voting.View;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.hibernate.validator.constraints.SafeHtml;
 

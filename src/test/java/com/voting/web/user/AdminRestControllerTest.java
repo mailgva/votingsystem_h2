@@ -127,7 +127,6 @@ class AdminRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    @Disabled
     void testCreateInvalid() throws Exception {
         User expected = new User(null, null, "", "newPass", Role.ROLE_USER, Role.ROLE_ADMIN);
         mockMvc.perform(post(REST_URL)
@@ -140,7 +139,6 @@ class AdminRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    @Disabled
     void testUpdateInvalid() throws Exception {
         User updated = new User(USER);
         updated.setName("");
