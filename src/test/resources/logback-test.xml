@@ -21,9 +21,11 @@
         <appender-ref ref="result"/>
     </logger>
 
-    <!--<logger name="org.postgresql" level="debug"/>-->
-
     <logger name="com.voting" level="debug"/>
+    <logger name="org.hibernate.SQL" level="DEBUG" />
+    <logger name="org.hibernate.type" level="TRACE" />
+
+
     <!--<logger name="org.springframework.jdbc" level="debug"/>-->
     <!--<logger name="jdbc.sqltiming" additivity="false" level="DEBUG">
         <appender-ref ref="console"/>
@@ -43,10 +45,6 @@
     </logger>-->
 
 
-    <!--
-    <logger name="org.hibernate.SQL" level="DEBUG" />
-    <logger name="org.hibernate.type" level="TRACE" />
-    -->
     <!--<logger name="log4jdbc.log4j2" level="debug" additivity="false">
         <appender-ref ref="console"/>
     </logger>-->
