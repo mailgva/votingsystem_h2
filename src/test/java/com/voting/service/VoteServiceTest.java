@@ -25,8 +25,7 @@ import java.util.GregorianCalendar;
 import static com.voting.testdata.DailyMenuTestData.TEST_DATE;
 
 import static com.voting.testdata.UserTestData.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class VoteServiceTest extends AbstractServiceTest{
@@ -93,6 +92,7 @@ public class VoteServiceTest extends AbstractServiceTest{
     @Test
     public void getByDate() throws ParseException {
         Vote vote = service.getByDate(TEST_DATE, USER_ID);
+        assertNotNull(vote);
         Resto resto = vote.getResto();
         assertEquals(resto, TestUtil.getByName(RestoTestData.restos, "Ресторан 1"));
     }
