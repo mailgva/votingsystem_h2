@@ -2,7 +2,6 @@ package com.voting.web.dailyMenu;
 
 import com.voting.View;
 import com.voting.model.DailyMenu;
-import com.voting.model.Dish;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

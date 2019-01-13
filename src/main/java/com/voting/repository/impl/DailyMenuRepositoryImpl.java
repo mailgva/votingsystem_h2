@@ -9,11 +9,13 @@ import com.voting.repository.impl.crud.CrudDailyMenuRepository;
 import com.voting.repository.impl.crud.CrudDishRepository;
 import com.voting.repository.impl.crud.CrudRestoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Repository
 @Transactional(readOnly = true)
@@ -64,7 +66,7 @@ public class DailyMenuRepositoryImpl implements DailyMenuRepository {
     @Override
     @Transactional
     public void deleteByDate(Date date) {
-       crudDailyMenuRepository.deleteByDate(date);
+        crudDailyMenuRepository.deleteByDate(date);
     }
 
     @Override
@@ -79,10 +81,10 @@ public class DailyMenuRepositoryImpl implements DailyMenuRepository {
             List<Dish> dishes = crudDishRepository.findAll();
             Set<Dish> tmpDishes = new HashSet<>();
 
-            while(tmpDishes.size() < COUNT_MENU_PER_DAY_FOR_RESTAURANT) {
+            while (tmpDishes.size() < COUNT_MENU_PER_DAY_FOR_RESTAURANT) {
                 tmpDishes.add(dishes.get((int) (Math.random() * dishes.size())));
             }
-            for(Dish dish : tmpDishes) {
+            for (Dish dish : tmpDishes) {
                 dailyMenu.addDailyMenuDish(new DailyMenuDish(dish));
             }
             save(dailyMenu);

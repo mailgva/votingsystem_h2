@@ -1,7 +1,6 @@
 package com.voting.to;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.voting.model.Resto;
 import lombok.AllArgsConstructor;
 import lombok.Data;

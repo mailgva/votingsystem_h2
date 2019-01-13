@@ -4,25 +4,17 @@ import com.voting.model.Resto;
 import com.voting.model.User;
 import com.voting.model.Vote;
 import com.voting.service.DailyMenuService;
-import com.voting.service.RestoService;
 import com.voting.service.UserService;
 import com.voting.service.VoteService;
 import com.voting.to.DailyMenuTo;
 import com.voting.util.DailyMenuUtil;
 import com.voting.web.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 public abstract class AbstractVotingController {
 

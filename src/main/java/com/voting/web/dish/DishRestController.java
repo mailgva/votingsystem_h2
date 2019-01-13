@@ -2,7 +2,6 @@ package com.voting.web.dish;
 
 import com.voting.View;
 import com.voting.model.Dish;
-import com.voting.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -2,13 +2,10 @@ package com.voting.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.voting.HasId;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @MappedSuperclass
 // http://stackoverflow.com/questions/594597/hibernate-annotations-which-is-better-field-or-property-access

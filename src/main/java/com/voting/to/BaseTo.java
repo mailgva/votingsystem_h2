@@ -1,6 +1,5 @@
 package com.voting.to;
 
-
 import com.voting.HasId;
 import lombok.AllArgsConstructor;
 import lombok.Data;

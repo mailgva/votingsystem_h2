@@ -1,7 +1,6 @@
 package com.voting.web.resto;
 
 import com.voting.View;
-import com.voting.model.Dish;
 import com.voting.model.Resto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
