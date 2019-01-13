@@ -12,9 +12,9 @@ import org.springframework.cache.CacheManager;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.Set;
 
-import static com.voting.testdata.DailyMenuTestData.TEST_DATE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -41,15 +41,18 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     @Test
     @Transactional
     public void getByDate() throws ParseException {
-        Set<DailyMenu> dm = service.getByDate(TEST_DATE);
+        Date date = SDF.parse("21-11-2018");
+        Set<DailyMenu> dm = service.getByDate(date);
         assertEquals(dm.size(), 3);
     }
 
     @Test
     public void create() throws ParseException {
+        Date date = SDF.parse("21-11-2018");
+
         DailyMenu dm = new DailyMenu();
 
-        dm.setDate(TEST_DATE);
+        dm.setDate(date);
 
         Resto resto = restoService.get(100005);
         dm.setResto(resto);
@@ -64,7 +67,7 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
 
         service.create(dm);
 
-        Set<DailyMenu> dmSet = service.getByDate(TEST_DATE);
+        Set<DailyMenu> dmSet = service.getByDate(date);
         assertEquals(dmSet.size(), 4);
     }
 
@@ -84,8 +87,9 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
 
     @Test
     public void delete() throws ParseException {
+        Date date = SDF.parse("21-11-2018");
         service.delete(100039);
-        Set<DailyMenu> dmSet = service.getByDate(TEST_DATE);
+        Set<DailyMenu> dmSet = service.getByDate(date);
         assertEquals(dmSet.size(), 2);
     }
 

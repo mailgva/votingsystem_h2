@@ -12,24 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataIntegrityViolationException;
 
-
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-
-import static com.voting.testdata.DailyMenuTestData.TEST_DATE;
 
 import static com.voting.testdata.UserTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class VoteServiceTest extends AbstractServiceTest{
-    private final SimpleDateFormat SDF = new SimpleDateFormat("dd-MM-yyyy");
 
     @Autowired
     private VoteService service;
@@ -57,8 +50,8 @@ public class VoteServiceTest extends AbstractServiceTest{
     @Test
     public void update() {
         assertThrows(PastDateException.class, () -> {
-            Date testDate_02_11_2018 = new GregorianCalendar(2018, Calendar.NOVEMBER,2).getTime();
-            Date testDate_01_11_2018 = new GregorianCalendar(2018, Calendar.NOVEMBER,1).getTime();
+            Date testDate_01_11_2018 = SDF.parse("01-11-2018");
+            Date testDate_02_11_2018 = SDF.parse("02-11-2018");
 
             User user = ADMIN;
             Resto resto = TestUtil.getByName(RestoTestData.restos, "Ресторан 2");
@@ -91,7 +84,8 @@ public class VoteServiceTest extends AbstractServiceTest{
 
     @Test
     public void getByDate() throws ParseException {
-        Vote vote = service.getByDate(TEST_DATE, USER_ID);
+        Date date = SDF.parse("21-11-2018");
+        Vote vote = service.getByDate(date, USER_ID);
         assertNotNull(vote);
         Resto resto = vote.getResto();
         assertEquals(resto, TestUtil.getByName(RestoTestData.restos, "Ресторан 1"));
