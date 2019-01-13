@@ -3,7 +3,6 @@ package com.voting.testdata;
 import com.voting.TestUtil;
 import com.voting.model.DailyMenu;
 import com.voting.model.DailyMenuDish;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.*;
@@ -15,7 +14,7 @@ import static com.voting.model.AbstractBaseEntity.START_SEQ;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DailyMenuTestData {
-    public static final Date DATE = new GregorianCalendar(2018, Calendar.NOVEMBER,21).getTime();
+    public static final Date TEST_DATE = new GregorianCalendar(2018, Calendar.NOVEMBER,21).getTime();
 
     public static int dailyMenuId = START_SEQ + 2 + 5 + 30; // 2 - users, 5 - restaurants, 30 - dishes
 
@@ -37,9 +36,9 @@ public class DailyMenuTestData {
     );
     
     public static final List<DailyMenu> DAILY_MENUS = List.of(
-            new DailyMenu(dailyMenuId++, DATE, TestUtil.getByName(RestoTestData.restos, "Ресторан 1"), DAILY_MENU_DISHES1),
-            new DailyMenu(dailyMenuId++, DATE, TestUtil.getByName(RestoTestData.restos, "Ресторан 2"), DAILY_MENU_DISHES2),
-            new DailyMenu(dailyMenuId++, DATE, TestUtil.getByName(RestoTestData.restos, "Ресторан 3"), DAILY_MENU_DISHES3)
+            new DailyMenu(dailyMenuId++, TEST_DATE, TestUtil.getByName(RestoTestData.restos, "Ресторан 1"), DAILY_MENU_DISHES1),
+            new DailyMenu(dailyMenuId++, TEST_DATE, TestUtil.getByName(RestoTestData.restos, "Ресторан 2"), DAILY_MENU_DISHES2),
+            new DailyMenu(dailyMenuId++, TEST_DATE, TestUtil.getByName(RestoTestData.restos, "Ресторан 3"), DAILY_MENU_DISHES3)
     );
     
 

@@ -9,21 +9,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Set;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.voting.testdata.DailyMenuTestData.TEST_DATE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class DailyMenuServiceTest extends AbstractServiceTest{
-
-    private final SimpleDateFormat SDF = new SimpleDateFormat("dd-MM-yyyy");
 
     @Autowired
     private DailyMenuService service;
@@ -46,8 +41,7 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     @Test
     @Transactional
     public void getByDate() throws ParseException {
-        Date date = SDF.parse("21-11-2018");
-        Set<DailyMenu> dm = service.getByDate(date);
+        Set<DailyMenu> dm = service.getByDate(TEST_DATE);
         assertEquals(dm.size(), 3);
     }
 
@@ -55,8 +49,7 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     public void create() throws ParseException {
         DailyMenu dm = new DailyMenu();
 
-        Date date = SDF.parse("21-11-2018");
-        dm.setDate(date);
+        dm.setDate(TEST_DATE);
 
         Resto resto = restoService.get(100005);
         dm.setResto(resto);
@@ -71,7 +64,7 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
 
         service.create(dm);
 
-        Set<DailyMenu> dmSet = service.getByDate(date);
+        Set<DailyMenu> dmSet = service.getByDate(TEST_DATE);
         assertEquals(dmSet.size(), 4);
     }
 
@@ -92,8 +85,7 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     @Test
     public void delete() throws ParseException {
         service.delete(100039);
-        Date date = SDF.parse("21-11-2018");
-        Set<DailyMenu> dmSet = service.getByDate(date);
+        Set<DailyMenu> dmSet = service.getByDate(TEST_DATE);
         assertEquals(dmSet.size(), 2);
     }
 
