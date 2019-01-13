@@ -55,6 +55,7 @@ public class DailyMenuServiceImpl implements DailyMenuService {
     @Cacheable("daily_menu")
     @Override
     public Set<DailyMenu> getByDate(Date date) {
+        System.out.println("==========DATE: " + date);
         return new HashSet<>(repository.getByDate(date));
     }
 

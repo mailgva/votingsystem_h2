@@ -1,6 +1,7 @@
 package com.voting.testdata;
 
 import com.voting.TestUtil;
+import com.voting.model.User;
 import com.voting.model.Vote;
 
 import java.time.LocalDate;
@@ -25,13 +26,21 @@ public class VoteTestData {
     public static int voteId = START_SEQ + 2 + 5 + 30 +9 + 18; // 2 - users, 5 - restaurants, 30 - dishes, 9 - dailymenu, 18 - dailymenudetail
 
     public static List<Vote> votes = List.of(
-            new Vote(UserTestData.USER, TestUtil.getByName(RestoTestData.restos, "Ресторан 1"), date1, LocalDateTime.now()),
-            new Vote(UserTestData.ADMIN, TestUtil.getByName(RestoTestData.restos, "Ресторан 2"), date1, LocalDateTime.now()),
-            new Vote(UserTestData.USER, TestUtil.getByName(RestoTestData.restos, "Ресторан 1"), date2, LocalDateTime.now()),
-            new Vote(UserTestData.ADMIN, TestUtil.getByName(RestoTestData.restos, "Ресторан 3"), date2, LocalDateTime.now()),
-            new Vote(UserTestData.USER, TestUtil.getByName(RestoTestData.restos, "Ресторан 2"), date3, LocalDateTime.now()),
-            new Vote(UserTestData.ADMIN, TestUtil.getByName(RestoTestData.restos, "Ресторан 2"), date3, LocalDateTime.now())
+            new Vote(voteId++, UserTestData.USER,  TestUtil.getByName(RestoTestData.restos, "Ресторан 1"), date1, LocalDateTime.now()),
+            new Vote(voteId++, UserTestData.ADMIN, TestUtil.getByName(RestoTestData.restos, "Ресторан 2"), date1, LocalDateTime.now()),
+            new Vote(voteId++, UserTestData.USER,  TestUtil.getByName(RestoTestData.restos, "Ресторан 1"), date2, LocalDateTime.now()),
+            new Vote(voteId++, UserTestData.ADMIN, TestUtil.getByName(RestoTestData.restos, "Ресторан 3"), date2, LocalDateTime.now()),
+            new Vote(voteId++, UserTestData.USER,  TestUtil.getByName(RestoTestData.restos, "Ресторан 2"), date3, LocalDateTime.now()),
+            new Vote(voteId++, UserTestData.ADMIN, TestUtil.getByName(RestoTestData.restos, "Ресторан 2"), date3, LocalDateTime.now())
     );
+
+    public static Vote getByDateUser(Date date, User user) {
+        return votes.stream()
+                .filter(v -> (v.getUser().equals(user) && v.getDate().equals(date)))
+                .findFirst()
+                .orElse(null);
+    }
+
 
 
 }

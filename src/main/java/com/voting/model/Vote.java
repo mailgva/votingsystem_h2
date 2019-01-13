@@ -77,6 +77,14 @@ public class Vote extends AbstractBaseEntity {
         this(v.getUser(), v.getResto(), v.getDate(), v.getDateTime());
     }
 
+    public Vote(Integer id, @NotNull User user, @NotNull Resto resto, @NotNull Date date, @NotNull LocalDateTime dateTime) {
+        super(id);
+        this.user = user;
+        this.resto = resto;
+        this.date = date;
+        this.dateTime = dateTime;
+    }
+
     @Override
     public String toString() {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -90,4 +98,25 @@ public class Vote extends AbstractBaseEntity {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Vote vote = (Vote) o;
+
+        if (user != null ? !user.equals(vote.user) : vote.user != null) return false;
+        if (resto != null ? !resto.equals(vote.resto) : vote.resto != null) return false;
+        return date != null ? date.equals(vote.date) : vote.date == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (resto != null ? resto.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        return result;
+    }
 }

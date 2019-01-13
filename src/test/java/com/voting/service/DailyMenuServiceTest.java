@@ -1,6 +1,7 @@
 package com.voting.service;
 
 import com.voting.TestUtil;
+import com.voting.testdata.DishTestData;
 import com.voting.testdata.RestoTestData;
 import com.voting.model.DailyMenu;
 import com.voting.model.DailyMenuDish;
@@ -49,20 +50,20 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     @Test
     public void create() throws ParseException {
         Date date = SDF.parse("21-11-2018");
+        Resto resto = restoService.get(TestUtil.getByName(RestoTestData.restos, "Ресторан 4").getId());
 
         DailyMenu dm = new DailyMenu();
 
         dm.setDate(date);
 
-        Resto resto = restoService.get(100005);
         dm.setResto(resto);
 
         DailyMenuDish dmd = new DailyMenuDish();
-        dmd.setDish(dishService.get(100035));
+        dmd.setDish(dishService.get(TestUtil.getByName(DishTestData.dishes, "Вареники").getId()));
         dm.addDailyMenuDish(dmd);
 
         dmd = new DailyMenuDish();
-        dmd.setDish(dishService.get(100036));
+        dmd.setDish(dishService.get(TestUtil.getByName(DishTestData.dishes, "Рагу").getId()));
         dm.addDailyMenuDish(dmd);
 
         service.create(dm);

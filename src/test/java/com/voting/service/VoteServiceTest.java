@@ -5,12 +5,14 @@ import com.voting.model.Resto;
 import com.voting.model.User;
 import com.voting.model.Vote;
 import com.voting.testdata.RestoTestData;
+import com.voting.testdata.VoteTestData;
 import com.voting.util.exception.PastDateException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -19,6 +21,7 @@ import java.time.ZoneId;
 import java.util.Date;
 
 import static com.voting.testdata.UserTestData.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -67,18 +70,24 @@ public class VoteServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    public void get() {
-        service.get(100065, ADMIN_ID);
+    @Transactional
+    public void get() throws ParseException {
+        Date date = SDF.parse("21-11-2018");
+        Vote actual = VoteTestData.getByDateUser(date, ADMIN);
+
+        Vote expected = service.get(actual.getId(), ADMIN_ID);
+        assertThat(actual).isEqualToIgnoringGivenFields(expected, "user", "dateTime");
     }
 
     @Test
     public void delete() {
         service.delete(100065, ADMIN_ID);
+        assertEquals(service.getAll().size(), 5);
     }
 
     @Test
     public void getAll() {
-        assertEquals(service.getAll().size(), 6);
+        assertEquals(service.getAll().size(), VoteTestData.votes.size());
     }
 
 
@@ -91,7 +100,7 @@ public class VoteServiceTest extends AbstractServiceTest{
         assertEquals(resto, TestUtil.getByName(RestoTestData.restos, "Ресторан 1"));
     }
 
-    @Test //(expected = Exception.class)
+    @Test
     public void createDublicat() {
         assertThrows(DataIntegrityViolationException.class, () -> {
 
