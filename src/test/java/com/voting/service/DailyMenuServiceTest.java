@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.voting.testdata.DailyMenuTestData.TEST_DATE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -44,20 +45,18 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
 
     @Test
     public void getByDate() throws ParseException {
-        Date date = SDF.parse("21-11-2018");
-        Set<DailyMenu> dm = service.getByDate(date);
+        List<DailyMenu> dm = service.getByDate(TEST_DATE);
         assertEquals(dm.size(), 3);
     }
 
     @Test
-    @Transactional(propagation = Propagation.NESTED)
-    public void create() throws ParseException {
-        Date date = SDF.parse("21-11-2018");
+    @Transactional
+    public void create() throws ParseException, InterruptedException {
         Resto resto = restoService.get(TestUtil.getByName(RestoTestData.restos, "Ресторан 4").getId());
 
         DailyMenu dm = new DailyMenu();
 
-        dm.setDate(date);
+        dm.setDate(TEST_DATE);
 
         dm.setResto(resto);
 
@@ -71,7 +70,8 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
 
         service.create(dm);
 
-        Set<DailyMenu> dmSet = service.getByDate(date);
+        List<DailyMenu> dmSet = service.getByDate(TEST_DATE);
+        Thread.sleep(20_000);
         assertEquals(dmSet.size(), 4);
     }
 
@@ -92,9 +92,8 @@ public class DailyMenuServiceTest extends AbstractServiceTest{
     @Test
     @Transactional(propagation = Propagation.NESTED)
     public void delete() throws ParseException {
-        Date date = SDF.parse("21-11-2018");
         service.delete(100039);
-        Set<DailyMenu> dmSet = service.getByDate(date);
+        List<DailyMenu> dmSet = service.getByDate(TEST_DATE);
         assertEquals(dmSet.size(), 2);
     }
 

@@ -3,6 +3,7 @@ package com.voting.service;
 import com.voting.model.DailyMenu;
 import com.voting.util.exception.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -16,11 +17,11 @@ public interface DailyMenuService {
 
     DailyMenu get(int id) throws NotFoundException;
 
-    Set<DailyMenu> getByDate(Date date) ;
+    List<DailyMenu> getByDate(LocalDate date) ;
 
     List<DailyMenu> getByNameResto(String nameResto);
 
     List<DailyMenu> getAll();
 
-    void generateDailyMenu(Date date);
+    void generateDailyMenu(LocalDate date);
 }

@@ -14,6 +14,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -92,8 +93,7 @@ public class DailyMenu extends AbstractBaseEntity{
     @NotNull
     @JsonFormat(pattern="yyyy-MM-dd")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private LocalDate date;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rest_id", nullable = false)
@@ -110,25 +110,25 @@ public class DailyMenu extends AbstractBaseEntity{
         this(dm.getId(), dm.getDate(), dm.getResto(), dm.getDmDishes());
     }
 
-    public DailyMenu(@NotNull Date date, @NotNull Resto resto) {
+    public DailyMenu(@NotNull LocalDate date, @NotNull Resto resto) {
         this.date = date;
         this.resto = resto;
     }
 
-    public DailyMenu(Integer id, @NotNull Date date, @NotNull Resto resto) {
+    public DailyMenu(Integer id, @NotNull LocalDate date, @NotNull Resto resto) {
         super(id);
         this.date = date;
         this.resto = resto;
     }
 
-    public DailyMenu(@NotNull Date date, @NotNull Resto resto, List<DailyMenuDish> dmDishes) {
+    public DailyMenu(@NotNull LocalDate date, @NotNull Resto resto, List<DailyMenuDish> dmDishes) {
         this.date = date;
         this.resto = resto;
         this.dmDishes = dmDishes;
         setDailyMenuIdToDailyMenuDishes();
     }
 
-    public DailyMenu(Integer id, @NotNull Date date, @NotNull Resto resto, @NotNull List<DailyMenuDish> dmDishes) {
+    public DailyMenu(Integer id, @NotNull LocalDate date, @NotNull Resto resto, @NotNull List<DailyMenuDish> dmDishes) {
         super(id);
         this.date = date;
         this.resto = resto;
@@ -155,6 +155,7 @@ public class DailyMenu extends AbstractBaseEntity{
     private void setDailyMenuIdToDailyMenuDishes() {
         dmDishes.stream().forEach(dailyMenuDish -> dailyMenuDish.setDailyMenu(this));
     }
+
 
     @Override
     public String toString() {

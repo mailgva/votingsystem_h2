@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -62,15 +63,14 @@ public class Vote extends AbstractBaseEntity {
     @Column(name = "date", nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Temporal(TemporalType.DATE)
     @NotNull
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "date_time", nullable = false)
     @NotNull
     private LocalDateTime dateTime;
 
-    public Vote(Resto resto, Date date, LocalDateTime dateTime) {
+    public Vote(Resto resto, LocalDate date, LocalDateTime dateTime) {
         this.resto = resto;
         this.date = date;
         this.dateTime = dateTime;
@@ -80,7 +80,7 @@ public class Vote extends AbstractBaseEntity {
         this(v.getUser(), v.getResto(), v.getDate(), v.getDateTime());
     }
 
-    public Vote(Integer id, @NotNull User user, @NotNull Resto resto, @NotNull Date date, @NotNull LocalDateTime dateTime) {
+    public Vote(Integer id, @NotNull User user, @NotNull Resto resto, @NotNull LocalDate date, @NotNull LocalDateTime dateTime) {
         super(id);
         this.user = user;
         this.resto = resto;
@@ -90,7 +90,7 @@ public class Vote extends AbstractBaseEntity {
 
     @Override
     public String toString() {
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return "Vote{" +
                 "id=" + id +
