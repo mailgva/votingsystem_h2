@@ -92,6 +92,7 @@ public class DailyMenu extends AbstractBaseEntity{
     @NotNull
     @JsonFormat(pattern="yyyy-MM-dd")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -164,4 +165,6 @@ public class DailyMenu extends AbstractBaseEntity{
                 ",\n dmDishes=" + dmDishes +
                 '}';
     }
+
+
 }

@@ -9,6 +9,7 @@ import com.voting.repository.impl.crud.CrudDailyMenuRepository;
 import com.voting.repository.impl.crud.CrudDishRepository;
 import com.voting.repository.impl.crud.CrudRestoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,7 +48,7 @@ public class DailyMenuRepositoryImpl implements DailyMenuRepository {
     }
 
     @Override
-    public List<DailyMenu> getByDate(Date date) {
+    public List<DailyMenu> getByDate(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
         List<DailyMenu> result = crudDailyMenuRepository.getByDate(date);
         System.out.println("=====================START=============");
         result.forEach(System.out::println);
