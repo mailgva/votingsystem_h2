@@ -17,13 +17,19 @@
 
     <beans>
         <context:property-placeholder location="classpath:/db/db.properties" system-properties-mode="OVERRIDE"/>
-        <bean id="dataSource" class="org.h2.jdbcx.JdbcConnectionPool" destroy-method="dispose">
+        <!--<bean id="dataSource" class="org.h2.jdbcx.JdbcConnectionPool" destroy-method="dispose">
             <constructor-arg>
                 <bean class="org.h2.jdbcx.JdbcDataSource">
                     <property name="URL" value="${database.url}"/>
                 </bean>
             </constructor-arg>
-        </bean>
+        </bean>-->
+        <bean id="dataSource"
+              class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+              p:driverClassName="${database.driverClassName}"
+              p:url="${database.url}"
+              p:username="${database.username}"
+              p:password="${database.password}"/>
     </beans>
 
     <beans>

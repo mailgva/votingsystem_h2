@@ -334,10 +334,16 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${h2.version}</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.4.1</version>
         </dependency>
 
         <dependency>
@@ -383,10 +389,15 @@
                 </plugins>
             </build>
             <dependencies>
-                <dependency>
+                <!--<dependency>
                     <groupId>com.h2database</groupId>
                     <artifactId>h2</artifactId>
                     <version>${h2.version}</version>
+                </dependency>-->
+                <dependency>
+                    <groupId>org.hsqldb</groupId>
+                    <artifactId>hsqldb</artifactId>
+                    <version>2.4.1</version>
                 </dependency>
             </dependencies>
         </profile>
