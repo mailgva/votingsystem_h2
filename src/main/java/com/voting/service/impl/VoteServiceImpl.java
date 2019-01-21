@@ -72,5 +72,8 @@ public class VoteServiceImpl implements VoteService {
         return repository.getByDateUsers(date);
     }
 
-
+    @Override
+    public List<Vote> getAllByDate(LocalDate date) {
+        return repository.getAllByDate(date);
+    }
 }

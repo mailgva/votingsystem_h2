@@ -90,13 +90,13 @@ public class Vote extends AbstractBaseEntity {
 
     @Override
     public String toString() {
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        DateTimeFormatter dtf_short = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return "Vote{" +
                 "id=" + id +
                 ", \nuser=" + user +
                 ", \nresto=" + resto +
-                ", \ndate=" + fmt.format(date) +
+                ", \ndate=" + dtf_short.format(date) +
                 ", \ndateTime=" + dtf.format(dateTime) +
                 '}';
     }

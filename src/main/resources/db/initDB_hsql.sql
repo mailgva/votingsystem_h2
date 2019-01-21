@@ -1,4 +1,5 @@
 DROP TABLE votes IF EXISTS;
+DROP TABLE daily_menu_detail IF EXISTS;
 DROP TABLE daily_menu IF EXISTS;
 DROP TABLE user_roles IF EXISTS;
 DROP TABLE dishes IF EXISTS;
@@ -48,7 +49,6 @@ CREATE TABLE dishes
   price            DECIMAL                 NOT NULL,
   img_file         VARCHAR(255)
 );
---CREATE UNIQUE INDEX dishes_unique_name_rest_idx ON dishes (rest_id, name);
 CREATE UNIQUE INDEX dishes_unique_name_idx ON dishes (name);
 
 
@@ -78,4 +78,4 @@ CREATE TABLE votes (
   FOREIGN KEY (user_id) REFERENCES users (id)       ON DELETE CASCADE,
   FOREIGN KEY (rest_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX votes_unique_user_rest_date_idx ON votes (user_id, rest_id, date);
+CREATE UNIQUE INDEX votes_unique_user_date_idx ON votes (user_id, date);

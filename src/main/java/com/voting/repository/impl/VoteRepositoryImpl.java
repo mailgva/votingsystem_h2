@@ -50,9 +50,12 @@ public class VoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
-    public List<Vote> getByDateUsers(LocalDate date) {
+    public List<Vote> getAllByDate(LocalDate date) {
         return crudVoteRepository.getAllByDate(date);
     }
 
-
+    @Override
+    public List<Vote> getByDateUsers(LocalDate date) {
+        return null;
+    }
 }

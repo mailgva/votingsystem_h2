@@ -24,5 +24,6 @@ public interface VoteRepository {
 
     List<Vote> getByDateUsers(LocalDate date);
 
+    List<Vote> getAllByDate(LocalDate date);
 
 }

@@ -108,12 +108,17 @@ public class VoteServiceTest extends AbstractServiceTest{
             LocalDate localDate = LocalDate.now().plusDays(10);
 
             Vote vote = new Vote(user, resto, localDate, LocalDateTime.now());
-            Vote newVote = service.create(vote, ADMIN_ID);
+            service.create(vote, ADMIN_ID);
 
-            newVote.setResto(TestUtil.getByName(RestoTestData.restos, "Ресторан 3"));
-            newVote.setId(null);
 
-            service.update(newVote, ADMIN_ID);
+
+            Resto resto2 = TestUtil.getByName(RestoTestData.restos, "Ресторан 3");
+            Vote vote2 = new Vote(user, resto2, localDate, LocalDateTime.now());
+
+            service.create(vote2, ADMIN_ID);
+
+//            service.getAllByDate(localDate).forEach(System.out::println);
+
         });
     }
 

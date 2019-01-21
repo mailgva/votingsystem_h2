@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataAccessException;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DishServiceTest extends AbstractServiceTest{
 
@@ -29,7 +29,8 @@ public class DishServiceTest extends AbstractServiceTest{
     @Test
     public void create() {
         service.create(new Dish(null,"Пельмени с соусом", 55.0d));
-
+        Dish dish = service.getByNameAndPrice("Пельмени с соусом", 55);
+        assertNotNull(dish);
     }
 
     @Test
@@ -63,6 +64,7 @@ public class DishServiceTest extends AbstractServiceTest{
     }
 
     @Test
+    @Transactional
     public void update() {
         Dish dish = service.get(100025);
         dish.setPrice(99.99);

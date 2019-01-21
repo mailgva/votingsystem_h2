@@ -24,4 +24,6 @@ public interface VoteService {
     Vote create(Vote vote, int userId) throws TooLateEcxeption;
 
     Vote getByDate(LocalDate date, int userId);
+
+    List<Vote> getAllByDate(LocalDate date);
 }
